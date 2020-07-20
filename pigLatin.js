@@ -4,34 +4,20 @@
 
 // - If a word begins with a vowel, just add "way" at the end.
 
-//not working yet 
-
-function translatePigLatin(str) {
-    let vowelAddition = 'way';
-    let consonantAddition = 'ay';
-    //let numOfConsonants = 0;
-    let consonants = ''
-    let vowels = ['a', 'e', 'i', 'o', 'u'];
-
-    for (let i = 0; i < str.length; i++) {
-        if (str[i] !== vowels) {
-            consonants = consonants + str[i];
-            console.log(consonants);
-            console.log(consonants.length);
-        } 
+    function translatePigLatin(str) {
+        let vowels = ['a', 'e', 'i', 'o', 'u'];
+        let newStr = "";
+        if (vowels.indexOf(str[0]) > -1) {  //if first letter is a vowel 
+            newStr = str + "way";
+            return newStr;
+        } else {
+            let firstMatch = str.match(/[aeiou]/g) || 0; //if no vowel then firstMatch is assigned 0
+            let vowelIndex = str.indexOf(firstMatch[0]); //getting the index of the first vowel
+            newStr = str.substring(vowelIndex) + str.substring(0, vowelIndex) + "ay"; //str.substring(vowel) represents the section of the string without the consonant beginning. str.substring(0, vowel) represents the consonant/consonant cluster.
+            return newStr;
+        }
     }
-    if (str.match(/^a|e|i|o|u/gi)) {
-        console.log(str.concat(vowelAddition))
-    } else if (str.match(/[^^aeiou][^^aeiou]/gi)) {
-        str.slice(-1, consonants.length);
-        console.log(str.concat(consonantAddition));
-    }
-    return str;
-  }
-  
-  console.log(translatePigLatin("animal"));
+    
+    console.log(translatePigLatin("consonant"));
 
-      //if statement
-    //if (str begins with aeiou then str + "way" to end)
-        //else if (str begins with !aeiou || cluster then - it and + 'ay' to end)
-    // /[^aeiou]/gi not a vowel 
+    //if no vowel in str, str.substring(vowel) will return OG string. str.substring(0,vowel) will then return nothing because 0,0 and then will just add 'ay' to the end of it. 
