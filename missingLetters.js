@@ -21,3 +21,26 @@ function fearNotLetter(str) {
 console.log(fearNotLetter("abce"));
 
 
+// alternative
+
+function fearNotLetter(str) {
+    let alphabet = 'abcdefghijklmnopqrstuvwxyz';
+
+    if (alphabet.includes(str)) {
+      return undefined
+    } else {
+      for (let i = 0; i < str.length; i++) {
+    console.log(alphabet.indexOf(str[i])) 
+  if (alphabet.indexOf(str[i]) - alphabet.indexOf(str[i - 1]) == 2 && alphabet.indexOf(str[i - 1]) !== -1) {
+console.log(alphabet.indexOf(str[i])-1)  
+let missingLetter = alphabet.indexOf(str[i])-1;
+missingLetter = alphabet[missingLetter];
+console.log(missingLetter)
+return missingLetter
+        } 
+      }
+    }
+  return str;
+}
+
+fearNotLetter("abce");
